@@ -10,4 +10,8 @@
 * 9. Login.jsx import getAuth frome firebase/auth
 * 10. create const auth =getAuth(app)
 * 11. import GoogleAuthProvider and creat const provider = new GoogleAuthProvider()
+* 12. use signInWithPopUp and pass auth and provider
+* 13. active sign in method (google,facbook,github,etc.)
+* 14. [vite]: change 127.0.0.1 to localhost
+*
 */
