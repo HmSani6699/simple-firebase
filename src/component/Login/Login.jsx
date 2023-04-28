@@ -56,6 +56,7 @@ const Login = () => {
                 <div>
                     <h2>User {user.displayName}</h2>
                     <p>Email {user.email}</p>
+                    
                     <img src={user.photoURL} alt="" />
                 </div>
             }
