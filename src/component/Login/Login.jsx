@@ -31,8 +31,11 @@ const Login = () => {
     }
     return (
         <div>
+        {
+            user?
+            <button onClick={handalGoogleSignOut}>Log Out</button>:
             <button onClick={heandlGoogleSignIn}>Login</button>
-            <button onClick={handalGoogleSignOut}>Log Out</button>
+        }
             {user &&
                 <div>
                     <h2>User {user.displayName}</h2>
