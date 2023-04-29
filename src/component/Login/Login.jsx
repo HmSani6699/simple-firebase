@@ -70,7 +70,7 @@
 // export default Login;
 
 
-import { GoogleAuthProvider, getAuth, signInWithPopup } from "firebase/auth";
+import { GoogleAuthProvider, getAuth, signInWithPopup, signOut } from "firebase/auth";
 import app from "../../firebase/firebase.init";
 import { useState } from "react";
 
@@ -92,9 +92,23 @@ const Login = () => {
             console.log(error.message);
         })
     }
+
+    const handleLogOut=()=>{
+        signOut(auth)
+        .then(result=>{
+            setUser(null)
+            console.log(result);
+        })
+        .then(error=>{
+            console.log(error.message);
+        })
+    }
     return (
         <div>
-            <button onClick={handleGoogleLogin}>GoogleLogin</button>
+    {
+        user?<button onClick={handleLogOut}>Log out</button>:
+        <button onClick={handleGoogleLogin}>GoogleLogin</button>
+    }
             {
                 user&&
                 <div>
