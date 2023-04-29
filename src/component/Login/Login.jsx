@@ -70,21 +70,40 @@
 // export default Login;
 
 
-import { GoogleAuthProvider, getAuth } from "firebase/auth";
+import { GoogleAuthProvider, getAuth, signInWithPopup } from "firebase/auth";
 import app from "../../firebase/firebase.init";
+import { useState } from "react";
 
 
 const Login = () => {
+    const [user,setUser]=useState(null)
 
     const auth = getAuth(app);
-    const googleProvider=new GoogleAuthProvider();
+    const googleProvider = new GoogleAuthProvider();
 
-const handleGoogleLogin=()=>{
-    console.log('ami gooogle mama');
-}
+    const handleGoogleLogin = () => {
+        signInWithPopup(auth, googleProvider)
+        .then(result=>{
+            const loggedUser=result.user;
+            console.log(loggedUser);
+            setUser(loggedUser)
+        })
+        .catch(error=>{
+            console.log(error.message);
+        })
+    }
     return (
         <div>
             <button onClick={handleGoogleLogin}>GoogleLogin</button>
+            {
+                user&&
+                <div>
+                    <h2>User : {user.displayName}</h2>
+                    <p>Email : {user.email}</p>
+                    <p><small>ID : {user.uid}</small></p>
+                    <img src={user.photoURL} alt="ami nai" />
+                </div>
+            }
         </div>
     );
 };
